@@ -3,39 +3,72 @@ import { Check } from "lucide-react";
 export const Features = () => {
   const features = [
     {
-      title: "Feature 1",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      title: "Describe feature one",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+      benefits: [
+        "Benefit one of this feature",
+        "Benefit two of this feature",
+        "Benefit three of this feature"
+      ],
+      image: "/placeholder.svg"
     },
     {
-      title: "Feature 2",
-      description: "Suspendisse varius enim in eros elementum tristique."
+      title: "Describe feature two",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+      benefits: [
+        "Benefit one of this feature",
+        "Benefit two of this feature",
+        "Benefit three of this feature"
+      ],
+      image: "/placeholder.svg"
     },
     {
-      title: "Feature 3",
-      description: "Duis cursus, mi quis viverra ornare, eros dolor."
+      title: "Describe feature three",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+      benefits: [
+        "Benefit one of this feature",
+        "Benefit two of this feature",
+        "Benefit three of this feature"
+      ],
+      image: "/placeholder.svg"
     }
   ];
 
   return (
-    <section id="features" className="py-16 md:py-24 bg-gray-50">
+    <section id="features" className="py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-bold">Key Features</h2>
-          <p className="mt-4 text-lg text-gray-600">
-            Everything you need to get started
-          </p>
-        </div>
-        <div className="mt-12 grid md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                <Check className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="mt-4 text-xl font-semibold">{feature.title}</h3>
-              <p className="mt-2 text-gray-600">{feature.description}</p>
+        {features.map((feature, index) => (
+          <div 
+            key={index}
+            className={`grid md:grid-cols-2 gap-12 items-center ${
+              index !== features.length - 1 ? "mb-24" : ""
+            } ${
+              index % 2 === 1 ? "md:grid-flow-col-dense" : ""
+            }`}
+          >
+            <div className={index % 2 === 1 ? "md:col-start-2" : ""}>
+              <h2 className="text-3xl font-bold mb-4">{feature.title}</h2>
+              <p className="text-gray-600 mb-6">{feature.description}</p>
+              <ul className="space-y-4">
+                {feature.benefits.map((benefit, benefitIndex) => (
+                  <li key={benefitIndex} className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary mt-1" />
+                    <span>{benefit}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          ))}
-        </div>
+            <div className={`bg-gray-100 rounded-lg aspect-square flex items-center justify-center ${
+              index % 2 === 1 ? "md:col-start-1" : ""
+            }`}>
+              <img
+                src={feature.image}
+                alt={feature.title}
+                className="w-full h-full object-cover rounded-lg"
+              />
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
